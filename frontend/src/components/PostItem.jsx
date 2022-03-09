@@ -6,6 +6,9 @@ function PostItem({ post }) {
 
   return (
     <div className="post">
+      <button className="edit" onClick={() => dispatch(deletePost(post._id))}>
+        Edit
+      </button>
       <button className="close" onClick={() => dispatch(deletePost(post._id))}>
         x
       </button>

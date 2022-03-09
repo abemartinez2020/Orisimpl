@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createPost } from "../features/posts/postSlice";
+import { updatePost } from "../features/posts/postSlice";
 
-function PostForm() {
+function UpdatePost() {
   const [post, setPost] = useState({
     title: "",
     description: "",
@@ -19,7 +19,9 @@ function PostForm() {
     if (!post.title || !post.description) {
       return alert("please fill in the fields");
     }
-    dispatch(createPost(post));
+
+    const postData = { data: post, id: "6228c5bed7d1e42b903b382c" };
+    dispatch(updatePost(postData));
     setPost({ title: "", description: "" });
   };
 
@@ -49,7 +51,7 @@ function PostForm() {
         </div>
         <div className="form-group">
           <button type="submit" className="btn btn-block">
-            Add Origami Post
+            Update Origami Post
           </button>
         </div>
       </form>
@@ -57,4 +59,4 @@ function PostForm() {
   );
 }
 
-export default PostForm;
+export default UpdatePost;

@@ -23,7 +23,7 @@ const getPosts = async (token) => {
   return response.data;
 };
 
-const deleteGoal = async (postId, token) => {
+const deletePost = async (postId, token) => {
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
@@ -34,10 +34,24 @@ const deleteGoal = async (postId, token) => {
   return (await response).data;
 };
 
+const updatePost = async (post, token) => {
+  console.log(post.id);
+  console.log(post.data);
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const response = axios.put(API_URL + post.id, post.data, config);
+  return (await response).data;
+};
+
 const postServices = {
   createPost,
   getPosts,
-  deleteGoal,
+  deletePost,
+  updatePost,
 };
 
 export default postServices;

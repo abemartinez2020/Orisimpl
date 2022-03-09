@@ -191,6 +191,15 @@ ul {
   background: none;
 }
 
+.post .edit {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
 .form,
 .content {
   width: 70%;

@@ -52,7 +52,27 @@ export const deletePost = createAsyncThunk(
   async (postId, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token;
-      return await postServices.deleteGoal(postId, token);
+      return await postServices.deletePost(postId, token);
+    } catch (error) {
+      const message =
+        (error.response &&
+          error.response.data &&
+          error.response.data &&
+          error.response.data.message) ||
+        error.message ||
+        error.toString();
+
+      return thunkAPI.rejectWithValue(message);
+    }
+  }
+);
+
+export const updatePost = createAsyncThunk(
+  "posts/update",
+  async (post, thunkAPI) => {
+    try {
+      const token = thunkAPI.getState().auth.user.token;
+      return await postServices.updatePost(post, token);
     } catch (error) {
       const message =
         (error.response &&
@@ -113,6 +133,21 @@ export const postSlice = createSlice({
         );
       })
       .addCase(deletePost.rejected, (state, action) => {
+        state.isPending = false;
+        state.isError = true;
+        state.message = action.payload;
+      })
+      .addCase(updatePost.pending, (state) => {
+        state.isPending = true;
+      })
+      .addCase(updatePost.fulfilled, (state, action) => {
+        state.isPending = false;
+        state.isSuccess = true;
+        state.posts = state.posts.map((post) =>
+          post._id === action.payload.id ? action.payload : post
+        );
+      })
+      .addCase(updatePost.rejected, (state, action) => {
         state.isPending = false;
         state.isError = true;
         state.message = action.payload;
