@@ -99,7 +99,7 @@ ul {
   padding: 10px 20px;
   border: 1px solid #000;
   border-radius: 5px;
-  background: #000;
+  background: #52307c;
   color: #fff;
   font-size: 16px;
   font-weight: 700;
@@ -151,14 +151,14 @@ ul {
   animation: spin 1.2s linear infinite;
 }
 
-.loadingSpinner {
+/* .loadingSpinner {
   width: 64px;
   height: 64px;
   border: 8px solid;
   border-color: #000 transparent #555 transparent;
   border-radius: 50%;
   animation: spin 1.2s linear infinite;
-}
+} */
 
 @keyframes spin {
   0% {
@@ -167,4 +167,37 @@ ul {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.posts {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.post {
+  background-color: #f4f4f4;
+  margin: 10px 0;
+  padding: 20px 0 10px;
+  position: relative;
+}
+
+.post .close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+.form,
+.content {
+  width: 70%;
+  margin: 0 auto;
+}
+
+.date {
+  margin-top: 1rem;
+  color: rgba(0, 0, 0, 0.5);
 }

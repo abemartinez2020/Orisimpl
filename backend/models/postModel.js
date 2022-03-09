@@ -8,12 +8,7 @@ const postSchema = mongoose.Schema(
       ref: "User",
     },
     title: String,
-    descripton: String,
-    categories: [String],
-    videoLink: String,
-    imageLinks: [String],
-    pdfDownload: String,
-    likes: [],
+    description: String,
   },
   {
     timestamps: true,

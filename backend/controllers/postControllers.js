@@ -4,7 +4,7 @@ const User = require("../models/userModel");
 
 //@desc Get posts
 //#route GET /api/posts
-//@access Prive
+//@access Private
 const getPosts = asyncHandler(async (req, res) => {
   const posts = await Post.find({ user: req.user.id });
 
@@ -13,7 +13,7 @@ const getPosts = asyncHandler(async (req, res) => {
 
 //@desc set post
 //#route POST /api/postsz
-//@access Prive
+//@access Private
 const setPost = asyncHandler(async (req, res) => {
   if (!req.body.title) {
     res.status(400);
@@ -21,22 +21,17 @@ const setPost = asyncHandler(async (req, res) => {
   }
 
   const post = await Post.create({
-    title: req.body.text,
+    title: req.body.title,
     description: req.body.description,
-    categories: req.body.categories,
-    videoLink: req.body.videoLink,
-    imageLinks: req.body.imageLinks,
-    pdfDownload: req.body.pdfDownload,
-    likes: req.body.likes,
     user: req.user.id,
   });
 
-  res.status(200).json({ message: post });
+  res.status(200).json(post);
 });
 
 //@desc Get posts
 //#route GET /api/posts
-//@access Prive
+//@access Private
 const updatePost = asyncHandler(async (req, res) => {
   const post = await Post.findById(req.params.id);
 
@@ -64,7 +59,7 @@ const updatePost = asyncHandler(async (req, res) => {
 
 //@desc Get posts
 //#route GET /api/posts
-//@access Prive
+//@access Private
 const deletePost = asyncHandler(async (req, res) => {
   const post = await Post.findById(req.params.id);
 
