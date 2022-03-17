@@ -15,9 +15,9 @@ const getPosts = asyncHandler(async (req, res) => {
 //#route POST /api/postsz
 //@access Private
 const setPost = asyncHandler(async (req, res) => {
-  if (!req.body.title) {
+  if (!req.body.title || !req.body.description) {
     res.status(400);
-    throw new Error("Please add a title field");
+    throw new Error("Please fill in all fields.");
   }
 
   const post = await Post.create({

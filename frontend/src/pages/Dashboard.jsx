@@ -38,7 +38,7 @@ function Dashboard() {
     <>
       <section className="heading">
         <h1>Welcome, {user && user.name}!</h1>
-        <p>You're amazing origami posts:</p>
+        <p>You're amazing origami posts.</p>
       </section>
       <PostForm />
 

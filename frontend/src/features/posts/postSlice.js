@@ -17,12 +17,7 @@ export const createPost = createAsyncThunk(
       return await postServices.createPost(postData, token);
     } catch (error) {
       const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-
+        error.response?.data?.message || error.message || error.toString();
       return thunkAPI.rejectWithValue(message);
     }
   }
@@ -36,12 +31,7 @@ export const getPosts = createAsyncThunk(
       return await postServices.getPosts(token);
     } catch (error) {
       const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-
+        error.response?.data?.message || error.message || error.toString();
       return thunkAPI.rejectWithValue(message);
     }
   }
@@ -55,13 +45,7 @@ export const deletePost = createAsyncThunk(
       return await postServices.deletePost(postId, token);
     } catch (error) {
       const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-
+        error.response?.data?.message || error.message || error.toString();
       return thunkAPI.rejectWithValue(message);
     }
   }
@@ -75,13 +59,7 @@ export const updatePost = createAsyncThunk(
       return await postServices.updatePost(post, token);
     } catch (error) {
       const message =
-        (error.response &&
-          error.response.data &&
-          error.response.data &&
-          error.response.data.message) ||
-        error.message ||
-        error.toString();
-
+        error.response?.data?.message || error.message || error.toString();
       return thunkAPI.rejectWithValue(message);
     }
   }

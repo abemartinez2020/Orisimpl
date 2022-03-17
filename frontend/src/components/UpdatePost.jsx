@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updatePost } from "../features/posts/postSlice";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function UpdatePost() {
+  const navigate = useNavigate();
+  const { state } = useLocation();
   const [post, setPost] = useState({
-    title: "",
-    description: "",
+    title: state.post.title,
+    description: state.post.description,
   });
 
   const dispatch = useDispatch();
@@ -20,9 +23,11 @@ function UpdatePost() {
       return alert("please fill in the fields");
     }
 
-    const postData = { data: post, id: "6228c5bed7d1e42b903b382c" };
+    console.log(state.post.id);
+    const postData = { data: post, id: state.post.id };
     dispatch(updatePost(postData));
     setPost({ title: "", description: "" });
+    navigate("/");
   };
 
   return (

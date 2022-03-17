@@ -30,21 +30,19 @@ const deletePost = async (postId, token) => {
     },
   };
 
-  const response = axios.delete(API_URL + postId, config);
-  return (await response).data;
+  const response = await axios.delete(API_URL + postId, config);
+  return response.data;
 };
 
 const updatePost = async (post, token) => {
-  console.log(post.id);
-  console.log(post.data);
   const config = {
     headers: {
       Authorization: `Bearer ${token}`,
     },
   };
 
-  const response = axios.put(API_URL + post.id, post.data, config);
-  return (await response).data;
+  const response = await axios.put(API_URL + post.id, post.data, config);
+  return response.data;
 };
 
 const postServices = {

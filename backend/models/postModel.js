@@ -7,8 +7,14 @@ const postSchema = mongoose.Schema(
       required: true,
       ref: "User",
     },
-    title: String,
-    description: String,
+    title: {
+      type: String,
+      required: [true, "Please, add a title"],
+    },
+    description: {
+      type: String,
+      required: [true, "Please, add a description"],
+    },
   },
   {
     timestamps: true,
