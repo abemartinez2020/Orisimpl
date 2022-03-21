@@ -17,6 +17,7 @@ function PostItem({ post }) {
                 id: post._id,
                 title: post.title,
                 description: post.description,
+                imagePublicId: post.image.public_id,
               },
             },
           })

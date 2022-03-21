@@ -30,7 +30,6 @@ function PostForm() {
         image: reader.result,
       }));
     };
-    console.log(post.image);
   };
 
   const handleSubmit = (e) => {

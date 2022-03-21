@@ -57,7 +57,26 @@ const updatePost = asyncHandler(async (req, res) => {
     throw new Error("User not authorized");
   }
 
-  const updatedPost = await Post.findByIdAndUpdate(req.params.id, req.body, {
+  let data;
+  const { title, description } = req.body;
+
+  if (req.body.image) {
+    await cloudinary.uploader.destroy(post.image.public_id);
+    const imageFileString = req.body.image;
+    const uploadResponse = await cloudinary.uploader.upload(imageFileString, {
+      upload_preset: "orisimpl",
+    });
+
+    data = {
+      title,
+      description,
+      image: { url: uploadResponse.url, public_id: uploadResponse.public_id },
+    };
+  } else {
+    data = { title, description, image: post.image };
+  }
+
+  const updatedPost = await Post.findByIdAndUpdate(req.params.id, data, {
     new: true,
   });
 
