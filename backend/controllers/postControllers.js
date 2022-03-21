@@ -1,6 +1,7 @@
 const asyncHandler = require("express-async-handler");
 const Post = require("../models/postModel");
-const User = require("../models/userModel");
+// const User = require("../models/userModel");
+const { cloudinary } = require("../utils/cloudinary");
 
 //@desc Get posts
 //#route GET /api/posts
@@ -20,9 +21,17 @@ const setPost = asyncHandler(async (req, res) => {
     throw new Error("Please fill in all fields.");
   }
 
+  console.log(req.body.image);
+
+  const imageFileString = req.body.image;
+  const uploadResponse = await cloudinary.uploader.upload(imageFileString, {
+    upload_preset: "orisimpl",
+  });
+
   const post = await Post.create({
     title: req.body.title,
     description: req.body.description,
+    img: { url: uploadResponse.url, public_id: uploadResponse.public_id },
     user: req.user.id,
   });
 

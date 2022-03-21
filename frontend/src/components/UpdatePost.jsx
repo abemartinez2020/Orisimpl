@@ -27,7 +27,7 @@ function UpdatePost() {
     const postData = { data: post, id: state.post.id };
     dispatch(updatePost(postData));
     setPost({ title: "", description: "" });
-    navigate("/");
+    setTimeout(navigate("/"), 1000);
   };
 
   return (

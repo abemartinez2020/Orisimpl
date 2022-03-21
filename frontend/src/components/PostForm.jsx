@@ -6,12 +6,32 @@ function PostForm() {
   const [post, setPost] = useState({
     title: "",
     description: "",
+    image: "",
   });
 
   const dispatch = useDispatch();
 
-  const handleChange = (e) =>
+  const handleChange = (e) => {
+    if (e.target.name === "image") {
+      const imageFile = e.target.files[0];
+      convert64(imageFile);
+    }
+
     setPost((prevState) => ({ ...prevState, [e.target.name]: e.target.value }));
+  };
+
+  const convert64 = (imageFile) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(imageFile);
+
+    reader.onloadend = () => {
+      setPost((prevState) => ({
+        ...prevState,
+        image: reader.result,
+      }));
+    };
+    console.log(post.image);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,6 +64,16 @@ function PostForm() {
             name="description"
             type=" text"
             value={post.description}
+            onChange={handleChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="image">add Image</label>
+          <input
+            id="image"
+            name="image"
+            type="file"
+            // value={post.image}
             onChange={handleChange}
           />
         </div>
