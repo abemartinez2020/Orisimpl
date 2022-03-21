@@ -15,7 +15,7 @@ const postSchema = mongoose.Schema(
       type: String,
       required: [true, "Please, add a description"],
     },
-    img: {
+    image: {
       url: String,
       public_id: String,
     },

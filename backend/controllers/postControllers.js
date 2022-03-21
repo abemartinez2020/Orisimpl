@@ -21,8 +21,6 @@ const setPost = asyncHandler(async (req, res) => {
     throw new Error("Please fill in all fields.");
   }
 
-  console.log(req.body.image);
-
   const imageFileString = req.body.image;
   const uploadResponse = await cloudinary.uploader.upload(imageFileString, {
     upload_preset: "orisimpl",
@@ -31,7 +29,7 @@ const setPost = asyncHandler(async (req, res) => {
   const post = await Post.create({
     title: req.body.title,
     description: req.body.description,
-    img: { url: uploadResponse.url, public_id: uploadResponse.public_id },
+    image: { url: uploadResponse.url, public_id: uploadResponse.public_id },
     user: req.user.id,
   });
 
@@ -87,7 +85,9 @@ const deletePost = asyncHandler(async (req, res) => {
     throw new Error("User not authorized");
   }
 
+  await cloudinary.uploader.destroy(post.image.public_id);
   await post.remove();
+  console.log(deletePost);
 
   res.status(200).json({ id: req.params.id });
 });

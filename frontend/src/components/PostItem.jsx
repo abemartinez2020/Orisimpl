@@ -29,6 +29,7 @@ function PostItem({ post }) {
       </button>
       <h1>{post.title}</h1>
       <p>{post.description}</p>
+      <img src={post.image.url} style={{ width: "200px" }} alt="" />
       <div className="date">
         {new Date(post.createdAt).toLocaleString("en-US")}
       </div>

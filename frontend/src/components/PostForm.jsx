@@ -40,7 +40,7 @@ function PostForm() {
       return alert("please fill in the fields");
     }
     dispatch(createPost(post));
-    setPost({ title: "", description: "" });
+    setPost({ title: "", description: "", image: "" });
   };
 
   return (
