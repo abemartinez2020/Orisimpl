@@ -70,72 +70,81 @@ function Register() {
   }
 
   return (
-    <>
-      <section className="heading">
-        <h1>
-          <FaUser /> Register
-        </h1>
-        <p>Please create an account</p>
-      </section>
+    <section className="bg-light text-dark p-5 text-center text-sm-start">
+      <div className="container mt-5 main">
+        <div className="d-md-flex align-items-center justify-content-between">
+          <div className="form">
+            <h1>
+              <FaUser /> Register
+            </h1>
+            <p className="lead my-4">
+              Register and start posting amazing origami!
+            </p>
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <input
+                  type="text"
+                  className="form-control"
+                  name="name"
+                  id="name"
+                  value={name}
+                  placeholder="Please, enter your name."
+                  onChange={handleChange}
+                />
+              </div>
 
-      <section className="form">
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <input
-              type="text"
-              className="form-control"
-              name="name"
-              id="name"
-              value={name}
-              placeholder="Please, enter your name."
-              onChange={handleChange}
-            />
-          </div>
+              <div className="form-group">
+                <input
+                  type="email"
+                  className="form-control"
+                  name="email"
+                  id="email"
+                  value={email}
+                  placeholder="Please, enter your emai."
+                  onChange={handleChange}
+                />
+              </div>
 
-          <div className="form-group">
-            <input
-              type="email"
-              className="form-control"
-              name="email"
-              id="email"
-              value={email}
-              placeholder="Please, enter your emai."
-              onChange={handleChange}
-            />
-          </div>
+              <div className="form-group">
+                <input
+                  type="password"
+                  className="form-control"
+                  name="password"
+                  id="password"
+                  value={password}
+                  placeholder="Please, enter a passowrd."
+                  onChange={handleChange}
+                />
+              </div>
 
-          <div className="form-group">
-            <input
-              type="password"
-              className="form-control"
-              name="password"
-              id="password"
-              value={password}
-              placeholder="Please, enter a passowrd."
-              onChange={handleChange}
-            />
-          </div>
+              <div className="form-group">
+                <input
+                  type="password"
+                  className="form-control"
+                  name="password2"
+                  id="password2"
+                  value={password2}
+                  placeholder="Please, confirm passowrd."
+                  onChange={handleChange}
+                />
+              </div>
 
-          <div className="form-group">
-            <input
-              type="password"
-              className="form-control"
-              name="password2"
-              id="password2"
-              value={password2}
-              placeholder="Please, confirm passowrd."
-              onChange={handleChange}
-            />
+              <div className="form-group">
+                <button type="submit" className="btn btn-block">
+                  Submit
+                </button>
+              </div>
+            </form>
           </div>
-
-          <div className="form-group">
-            <button type="submit" className="btn btn-block">
-              Submit
-            </button>
-          </div>
-        </form>
-      </section>
-    </>
+          <img
+            className="img-fluid d-none d-md-block"
+            src="./imgs/contemplating.svg"
+            alt=""
+            style={{ width: "45%" }}
+          />
+        </div>
+      </div>
+    </section>
   );
 }
 

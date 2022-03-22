@@ -57,39 +57,48 @@ function PostForm() {
   };
 
   return (
-    <section className="form">
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="title">Origami Model Title</label>
-          <input
-            id="title"
-            type=" text"
-            name="title"
-            value={post.title}
-            onChange={handleChange}
-          />
-        </div>
+    <section className="bg-light text-dark p-5 text-center text-sm-ce mt-5">
+      <div className="container mt-5"></div>
+      <div className="post-form">
+        <h1>Start Posting!</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="title">Origami Model Title</label>
+            <input
+              id="title"
+              type=" text"
+              name="title"
+              value={post.title}
+              onChange={handleChange}
+            />
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="description">Description</label>
-          <input
-            id="description"
-            name="description"
-            type=" text"
-            value={post.description}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="image">add Image</label>
-          <input id="image" name="image" type="file" onChange={handleChange} />
-        </div>
-        <div className="form-group">
-          <button type="submit" className="btn btn-block">
-            Add Origami Post
-          </button>
-        </div>
-      </form>
+          <div className="form-group">
+            <label htmlFor="description">Description</label>
+            <input
+              id="description"
+              name="description"
+              type=" text"
+              value={post.description}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="image">add Image</label>
+            <input
+              id="image"
+              name="image"
+              type="file"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <button type="submit" className="btn btn-block">
+              Add Origami Post
+            </button>
+          </div>
+        </form>
+      </div>
     </section>
   );
 }

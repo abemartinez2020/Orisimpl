@@ -8,70 +8,12 @@
 
 body {
   font-family: "Hubballi", cursive;
+  width: 100%;
 }
 
-.center {
-  text-align: center;
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 0;
-  border-bottom: 1px solid #e6e6e6;
-  margin-bottom: 60px;
-}
-
-.header ul {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.header ul li {
-  margin-left: 20px;
-}
-
-.header ul li a {
-  display: flex;
-  align-items: center;
-}
-
-.header ul li a:hover {
-  color: #777;
-}
-
-.header ul li a svg {
-  margin-right: 5px;
-}
-
-.heading {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 50px;
-  padding: 0 20px;
-}
-
-.heading p {
-  color: #828282;
-}
-
-a {
-  text-decoration: none;
-}
-
-ul {
-  list-style: none;
-}
-
-.form,
-.content {
-  width: 70%;
-  margin: 0 auto;
+.main {
+  padding-top: 80px;
+  height: 100vh;
 }
 
 .form-group {
@@ -96,19 +38,9 @@ ul {
 }
 
 .btn {
-  padding: 10px 20px;
-  border: 1px solid #000;
-  border-radius: 5px;
-  background: #52307c;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  text-align: center;
-  appearance: button;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border-radius: 100px !important;
+  background: #6c63ff !important;
+  color: #fff !important;
 }
 
 .btn svg {
@@ -142,6 +74,10 @@ ul {
   align-items: center;
 }
 
+.btn-logout {
+  background-color: black !important;
+}
+
 .loadingSpinner {
   width: 64px;
   height: 64px;
@@ -150,15 +86,6 @@ ul {
   border-radius: 50%;
   animation: spin 1.2s linear infinite;
 }
-
-/* .loadingSpinner {
-  width: 64px;
-  height: 64px;
-  border: 8px solid;
-  border-color: #000 transparent #555 transparent;
-  border-radius: 50%;
-  animation: spin 1.2s linear infinite;
-} */
 
 @keyframes spin {
   0% {
@@ -200,13 +127,33 @@ ul {
   background: none;
 }
 
-.form,
-.content {
-  width: 70%;
-  margin: 0 auto;
-}
-
 .date {
   margin-top: 1rem;
   color: rgba(0, 0, 0, 0.5);
+}
+
+/*here I start*/
+.links {
+  text-decoration: none;
+  color: #3f3d56;
+  margin-left: 10px;
+}
+
+.form {
+  width: 45%;
+}
+
+.post-form {
+  width: 50%;
+  margin: 0 auto;
+}
+/*Media Queries*/
+@media (max-width: 768px) {
+  .form {
+    width: 100%;
+  }
+
+  .post-form {
+    width: 100%;
+  }
 }

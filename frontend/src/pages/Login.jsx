@@ -66,46 +66,53 @@ function Login() {
   }
 
   return (
-    <>
-      <section className="heading">
-        <h1>
-          <FaSignInAlt />
-          Login
-        </h1>
-        <p>Login and Start posting awesome origami tutorials!</p>
-      </section>
+    <section className="bg-light text-dark p-5 text-center text-sm-start mt-5">
+      <div className="container mt-5 main">
+        <div className="d-md-flex align-items-center justify-content-between">
+          <div className="form">
+            <h1>
+              <FaSignInAlt />
+              Login
+            </h1>
+            <p className="lead my-4">Please login.</p>
+            <form onSubmit={handleSubmit}>
+              <div className="form-group">
+                <input
+                  type="text"
+                  name="email"
+                  id="email"
+                  value={email}
+                  placeholder="Enter your email."
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="form-group">
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  value={password}
+                  placeholder="Enter your password."
+                  onChange={handleChange}
+                />
+              </div>
 
-      <section className="form">
-        <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <input
-              type="text"
-              name="email"
-              id="email"
-              value={email}
-              placeholder="Enter your email."
-              onChange={handleChange}
-            />
+              <div className="form-group">
+                <button type="submit" className="btn btn-block">
+                  Submit
+                </button>
+              </div>
+            </form>
           </div>
-          <div className="form-group">
-            <input
-              type="password"
-              name="password"
-              id="password"
-              value={password}
-              placeholder="Enter your password."
-              onChange={handleChange}
-            />
-          </div>
-
-          <div className="form-group">
-            <button type="submit" className="btn btn-block">
-              Submit
-            </button>
-          </div>
-        </form>
-      </section>
-    </>
+          <img
+            className="img-fluid d-none d-md-block"
+            src="./imgs/login.svg"
+            alt=""
+            style={{ width: "45%" }}
+          />
+        </div>
+      </div>
+    </section>
   );
 }
 
