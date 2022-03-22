@@ -36,22 +36,27 @@ function Dashboard() {
 
   return (
     <>
-      <section className="heading">
+      <section
+        className="bg-light text-dark  text-center text-sm-center mt-5 mb-0"
+        style={{ paddingTop: "150px", marginBottom: "0px" }}
+      >
         <h1>Welcome, {user && user.name}!</h1>
         <p>Your amazing origami posts.</p>
       </section>
       <PostForm />
 
-      <section className="content">
-        {posts.length > 0 ? (
-          <div className="posts">
-            {posts.map((post) => (
-              <PostItem key={post._id} post={post} />
-            ))}
-          </div>
-        ) : (
-          <h3>You have not posted any origami models.</h3>
-        )}
+      <section className="p-5">
+        <div className="container">
+          {posts.length > 0 ? (
+            <div className="row text-center">
+              {posts.map((post) => (
+                <PostItem key={post._id} post={post} />
+              ))}
+            </div>
+          ) : (
+            <h3>You have not posted any origami models.</h3>
+          )}
+        </div>
       </section>
     </>
   );

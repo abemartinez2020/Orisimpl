@@ -57,10 +57,12 @@ function PostForm() {
   };
 
   return (
-    <section className="bg-light text-dark p-5 text-center text-sm-ce mt-5">
-      <div className="container mt-5"></div>
+    <section
+      className="bg-light text-dark p-5 text-center text-sm-ce "
+      style={{ marginTop: "-20px" }}
+    >
+      <div className="container"></div>
       <div className="post-form">
-        <h1>Start Posting!</h1>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="title">Origami Model Title</label>
