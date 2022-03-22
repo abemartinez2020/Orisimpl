@@ -18,7 +18,7 @@ const getPosts = asyncHandler(async (req, res) => {
 const setPost = asyncHandler(async (req, res) => {
   if (!req.body.title || !req.body.description) {
     res.status(400);
-    throw new Error("Please fill in all fields.");
+    throw new Error("Please fill title and description.");
   }
 
   const imageFileString = req.body.image;

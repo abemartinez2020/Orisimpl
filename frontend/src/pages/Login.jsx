@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { login, reset } from "../features/auth/authSlice";
+import { passwordChecker, emailChecker } from "../utils/validation";
 import Spinner from "../components/Spinner";
 
 function Login() {
@@ -42,6 +43,15 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    //compolete client-side form validation before sending http POST request to /api/users api enpoint.
+    const passwordValidation = passwordChecker(password);
+    const emailValidation = emailChecker(email);
+
+    if (!emailValidation.success) return toast.error(emailValidation.message);
+
+    if (!passwordValidation.success)
+      return toast.error(passwordValidation.message);
 
     const userData = {
       email,

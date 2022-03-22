@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import { createPost } from "../features/posts/postSlice";
 
@@ -14,6 +16,10 @@ function PostForm() {
   const handleChange = (e) => {
     if (e.target.name === "image") {
       const imageFile = e.target.files[0];
+
+      if (imageFile.type !== "image/jpeg" && imageFile.type !== "image/png")
+        return toast.error("please upload png or jpeg images");
+
       convert64(imageFile);
     }
 
@@ -36,9 +42,17 @@ function PostForm() {
     e.preventDefault();
 
     if (!post.title || !post.description) {
-      return alert("please fill in the fields");
+      return toast.error("please fill in the title and description");
     }
-    dispatch(createPost(post));
+
+    //sanitize and dispatch payload
+    dispatch(
+      createPost({
+        title: post.title.trim(),
+        description: post.description.trim(),
+        image: post.image,
+      })
+    );
     setPost({ title: "", description: "", image: "" });
   };
 
@@ -68,13 +82,7 @@ function PostForm() {
         </div>
         <div className="form-group">
           <label htmlFor="image">add Image</label>
-          <input
-            id="image"
-            name="image"
-            type="file"
-            // value={post.image}
-            onChange={handleChange}
-          />
+          <input id="image" name="image" type="file" onChange={handleChange} />
         </div>
         <div className="form-group">
           <button type="submit" className="btn btn-block">

@@ -5,6 +5,7 @@ import { register, reset } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Spinner from "../components/Spinner";
+import { passwordChecker, emailChecker } from "../utils/validation";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -46,16 +47,22 @@ function Register() {
     e.preventDefault();
 
     //compolete client-side form validation before sending http POST request to /api/users api enpoint.
-    if (password !== password2) {
-      toast.error("Passwords do not match! ");
-    } else {
-      const userData = {
-        name,
-        email,
-        password,
-      };
-      dispatch(register(userData));
-    }
+    const passwordValidation = passwordChecker(password, password2);
+    const emailValidation = emailChecker(email);
+
+    if (!name) return toast.error("Fill in your name, please!");
+
+    if (!emailValidation.success) return toast.error(emailValidation.message);
+
+    if (!passwordValidation.success)
+      return toast.error(passwordValidation.message);
+
+    const userData = {
+      name: name.trim(),
+      email,
+      password,
+    };
+    dispatch(register(userData));
   };
 
   if (isLoading) {
