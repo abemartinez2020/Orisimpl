@@ -72,7 +72,7 @@ function Login() {
           <FaSignInAlt />
           Login
         </h1>
-        <p>Login and Start posting awesome origami tuturials!</p>
+        <p>Login and Start posting awesome origami tutorials!</p>
       </section>
 
       <section className="form">

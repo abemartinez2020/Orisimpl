@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import UpdatePost from "./components/UpdatePost";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/update" element={<UpdatePost />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
 
       <ToastContainer />

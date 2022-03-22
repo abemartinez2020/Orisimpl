@@ -1,6 +1,5 @@
 const asyncHandler = require("express-async-handler");
 const Post = require("../models/postModel");
-// const User = require("../models/userModel");
 const { cloudinary } = require("../utils/cloudinary");
 
 //@desc Get posts
@@ -22,13 +21,24 @@ const setPost = asyncHandler(async (req, res) => {
   }
 
   const imageFileString = req.body.image;
+  const imageString = String(imageFileString);
+  if (
+    !imageString.includes("image/jpeg") &&
+    !imageString.includes("image/png")
+  ) {
+    res.status(400);
+    throw new Error(
+      "Please pass a png or jpeg image as a base64 binary string"
+    );
+  }
+
   const uploadResponse = await cloudinary.uploader.upload(imageFileString, {
     upload_preset: "orisimpl",
   });
 
   const post = await Post.create({
-    title: req.body.title,
-    description: req.body.description,
+    title: req.body.title.trim(),
+    description: req.body.description.trim(),
     image: { url: uploadResponse.url, public_id: uploadResponse.public_id },
     user: req.user.id,
   });
@@ -57,23 +67,46 @@ const updatePost = asyncHandler(async (req, res) => {
     throw new Error("User not authorized");
   }
 
+  if (!req.body.title || !req.body.description) {
+    res.status(400);
+    throw new Error("Please fill title and description.");
+  }
+
+  //image processing:
   let data;
   const { title, description } = req.body;
 
   if (req.body.image) {
-    await cloudinary.uploader.destroy(post.image.public_id);
     const imageFileString = req.body.image;
+    const imageString = String(imageFileString);
+
+    if (
+      !imageString.includes("image/jpeg") &&
+      !imageString.includes("image/png")
+    ) {
+      res.status(400);
+      throw new Error(
+        "Please pass a png or jpeg image as a base64 binary string"
+      );
+    }
+
+    await cloudinary.uploader.destroy(post.image.public_id);
+
     const uploadResponse = await cloudinary.uploader.upload(imageFileString, {
       upload_preset: "orisimpl",
     });
 
     data = {
-      title,
-      description,
+      title: title.trim(),
+      description: description.trim(),
       image: { url: uploadResponse.url, public_id: uploadResponse.public_id },
     };
   } else {
-    data = { title, description, image: post.image };
+    data = {
+      title: title.trim(),
+      description: description.trim(),
+      image: post.image,
+    };
   }
 
   const updatedPost = await Post.findByIdAndUpdate(req.params.id, data, {
