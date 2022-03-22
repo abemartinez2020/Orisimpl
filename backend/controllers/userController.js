@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
+const { passwordChecker, emailChecker } = require("../utils/validation");
 
 //@desc Register new user
 //@route POST /api/users
@@ -11,8 +12,16 @@ const registerUser = asyncHandler(async (req, res) => {
 
   if (!name || !email || !password) {
     res.status(400);
-    throw new Error("Please include all fields");
+    throw new Error("Please include name");
   }
+
+  //compolete server side data validation before querying database
+  const passwordValidation = passwordChecker(password);
+  const emailValidation = emailChecker(email);
+
+  if (!emailValidation.success) throw new Error(emailValidation.message);
+
+  if (!passwordValidation.success) throw new Error(passwordValidation.message);
 
   const userExists = await User.findOne({ email });
 
@@ -25,7 +34,7 @@ const registerUser = asyncHandler(async (req, res) => {
   const hashedPassword = await bcrypt.hash(password, salt);
 
   const user = await User.create({
-    name,
+    name: name.trim(),
     email,
     password: hashedPassword,
   });
@@ -50,6 +59,15 @@ const registerUser = asyncHandler(async (req, res) => {
 //@access Public
 const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
+
+  //compolete server side data validation before querying database
+  const passwordValidation = passwordChecker(password);
+  const emailValidation = emailChecker(email);
+
+  if (!emailValidation.success) throw new Error(emailValidation.message);
+
+  if (!passwordValidation.success) throw new Error(passwordValidation.message);
+
   const user = await User.findOne({ email });
   if (user && (await bcrypt.compare(password, user.password))) {
     res.json({
