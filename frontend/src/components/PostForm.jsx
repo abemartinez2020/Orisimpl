@@ -58,10 +58,9 @@ function PostForm() {
 
   return (
     <section
-      className="bg-light text-dark p-5 text-center text-sm-ce "
+      className="bg-light text-dark p-5 text-center text-sm-center "
       style={{ marginTop: "-20px" }}
     >
-      <div className="container"></div>
       <div className="post-form">
         <form onSubmit={handleSubmit}>
           <div className="form-group">

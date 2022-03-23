@@ -60,39 +60,49 @@ function UpdatePost() {
   };
 
   return (
-    <section className="form">
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="title">Origami Model Title</label>
-          <input
-            id="title"
-            type=" text"
-            name="title"
-            value={post.title}
-            onChange={handleChange}
-          />
-        </div>
+    <section
+      className="bg-light text-dark  text-center text-sm-center"
+      style={{ marginTop: "90px", paddingTop: "100px" }}
+    >
+      <div className="post-form">
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="title">Origami Model Title</label>
+            <input
+              id="title"
+              type=" text"
+              name="title"
+              value={post.title}
+              onChange={handleChange}
+            />
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="description">Description</label>
-          <input
-            id="description"
-            name="description"
-            type=" text"
-            value={post.description}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="image">Change Image</label>
-          <input id="image" name="image" type="file" onChange={handleChange} />
-        </div>
-        <div className="form-group">
-          <button type="submit" className="btn btn-block">
-            Update Origami Post
-          </button>
-        </div>
-      </form>
+          <div className="form-group">
+            <label htmlFor="description">Description</label>
+            <input
+              id="description"
+              name="description"
+              type=" text"
+              value={post.description}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="image">Change Image</label>
+            <input
+              id="image"
+              name="image"
+              type="file"
+              onChange={handleChange}
+            />
+          </div>
+          <div className="form-group">
+            <button type="submit" className="btn btn-block">
+              Update Origami Post
+            </button>
+          </div>
+        </form>
+      </div>
     </section>
   );
 }
