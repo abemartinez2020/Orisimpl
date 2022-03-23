@@ -122,7 +122,7 @@ export const postSlice = createSlice({
         state.isPending = false;
         state.isSuccess = true;
         state.posts = state.posts.map((post) =>
-          post._id === action.payload.id ? action.payload : post
+          post._id === action.payload._id ? action.payload : post
         );
       })
       .addCase(updatePost.rejected, (state, action) => {

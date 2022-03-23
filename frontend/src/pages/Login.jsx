@@ -71,8 +71,7 @@ function Login() {
         <div className="d-md-flex align-items-center justify-content-between">
           <div className="form">
             <h1>
-              <FaSignInAlt />
-              Login
+              <FaSignInAlt /> Login
             </h1>
             <p className="lead my-4">Please login.</p>
             <form onSubmit={handleSubmit}>

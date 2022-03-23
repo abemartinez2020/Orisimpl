@@ -113,7 +113,8 @@ const updatePost = asyncHandler(async (req, res) => {
     new: true,
   });
 
-  res.status(200).json(updatedPost);
+  const postUpdt = await Post.findById(req.params.id);
+  res.status(200).json(postUpdt);
 });
 
 //@desc Get posts

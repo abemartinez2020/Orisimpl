@@ -56,7 +56,7 @@ function UpdatePost() {
     const postData = { data: sanitizedData, id: state.post.id };
     dispatch(updatePost(postData));
     setPost({ title: "", description: "", image: "" });
-    setTimeout(navigate("/"), 1000);
+    setTimeout(() => navigate("/"), 700);
   };
 
   return (
