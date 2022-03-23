@@ -54,7 +54,9 @@ function Dashboard() {
               ))}
             </div>
           ) : (
-            <h3>You have not posted any origami models.</h3>
+            <div className="row text-center">
+              <h3> You have not posted any origami models.</h3>
+            </div>
           )}
         </div>
       </section>
