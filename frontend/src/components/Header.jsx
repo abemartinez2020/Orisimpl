@@ -20,7 +20,7 @@ function Header() {
         <Link className="links" to="/">
           <h1 className="navbar-brand">
             <img
-              src="./imgs/Orisimpl_logo.png"
+              src="./imgs/logo2.png"
               width="30px"
               style={{ paddingRight: "10px" }}
             />

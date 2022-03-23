@@ -106,7 +106,7 @@ function Login() {
           </div>
           <img
             className="img-fluid d-none d-md-block"
-            src="./imgs/rabbit.png"
+            src="./imgs/rabbit4.png"
             alt=""
             style={{ width: "45%" }}
           />

@@ -21,7 +21,7 @@ function Dashboard() {
     }
 
     if (!user) {
-      navigate("/login");
+      navigate("/register");
     }
 
     dispatch(getPosts());

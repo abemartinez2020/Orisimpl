@@ -138,7 +138,7 @@ function Register() {
           </div>
           <img
             className="img-fluid d-none d-md-block"
-            src="./imgs/origamibird2.png"
+            src="./imgs/butterfly.png"
             alt=""
             style={{ width: "45%" }}
           />
