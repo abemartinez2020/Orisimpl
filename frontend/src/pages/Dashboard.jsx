@@ -1,10 +1,10 @@
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getPosts, reset } from "../features/posts/postSlice";
 import PostForm from "../components/PostForm";
-import PostItem from "../components/PostItem";
 import Spinner from "../components/Spinner";
+import PostList from "../components/PostList";
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -25,6 +25,7 @@ function Dashboard() {
     }
 
     dispatch(getPosts());
+
     return () => {
       dispatch(reset());
     };
@@ -43,23 +44,16 @@ function Dashboard() {
         <h1>Welcome, {user && user.name}!</h1>
         <p>Your amazing origami posts.</p>
       </section>
+
       <PostForm />
 
-      <section className="p-5">
-        <div className="container">
-          {posts.length > 0 ? (
-            <div className="row text-center">
-              {posts.map((post) => (
-                <PostItem key={post._id} post={post} />
-              ))}
-            </div>
-          ) : (
-            <div className="row text-center">
-              <h3> You have not posted any origami models.</h3>
-            </div>
-          )}
+      {posts.length > 0 ? (
+        <PostList posts={posts} />
+      ) : (
+        <div className="row text-center">
+          <h3> You have not posted any origami models.</h3>
         </div>
-      </section>
+      )}
     </>
   );
 }

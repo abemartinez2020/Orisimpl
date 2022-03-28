@@ -23,13 +23,9 @@ function Login() {
   );
 
   useEffect(() => {
-    if (isError) {
-      toast.error(message);
-    }
+    if (isError) return toast.error(message);
 
-    if (isSuccess || user) {
-      navigate("/");
-    }
+    if (isSuccess || user) navigate("/");
 
     dispatch(reset());
   }, [user, isError, isSuccess, message, navigate, dispatch]);
@@ -44,7 +40,7 @@ function Login() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    //compolete client-side form validation before sending http POST request to /api/users api enpoint.
+    //complete client-side form validation before sending http POST request to /api/users api enpoint.
     const passwordValidation = passwordChecker(password);
     const emailValidation = emailChecker(email);
 
