@@ -8,8 +8,8 @@ function PostList({ posts }) {
     if (e.target.value.length === 0) setFilteredListe(posts);
     const filteredPosts = posts.filter(
       (post) =>
-        post.title.includes(e.target.value) ||
-        post.description.includes(e.target.value)
+        post.title.toLowerCase().includes(e.target.value.toLowerCase()) ||
+        post.description.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setFilteredListe(filteredPosts);
   };
@@ -24,9 +24,11 @@ function PostList({ posts }) {
           <input type="text" placeholder="search" onChange={handleFilter} />
         </div>
         <div className="row text-center">
-          {filteredList.map((post) => (
-            <PostItem key={post._id} post={post} />
-          ))}
+          {filteredList.length > 0 ? (
+            filteredList.map((post) => <PostItem key={post._id} post={post} />)
+          ) : (
+            <h2>no post found</h2>
+          )}
         </div>
       </div>
     </section>

@@ -7,7 +7,7 @@ function PostItem({ post }) {
   const dispatch = useDispatch();
 
   return (
-    <div className="col-md gap-2">
+    <div className="col-md-4 gap-2">
       <div className="card bg-light text-dark mt-3">
         <div className="card-body text-center w-fill">
           <img
